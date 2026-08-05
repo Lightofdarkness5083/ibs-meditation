@@ -2,52 +2,57 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <!-- 반응형을 위한 필수 meta 태그: 화면 너비에 맞춰 표시 -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Q&A IBS 묵상</title>
+  <title>성경책 개관 - Q&A IBS 묵상</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <!-- 모든 페이지에서 재사용할 상단 네비게이션 -->
   <nav class="nav">
     <a href="index.html" class="nav-logo">Q&A IBS</a>
     <div class="nav-links">
-      <a href="index.html" class="active">홈</a>
-      <a href="overview.html">성경책 개관</a>
+      <a href="index.html">홈</a>
+      <a href="overview.html" class="active">성경책 개관</a>
       <a href="meditation.html">묵상 진행</a>
     </div>
   </nav>
 
-  <!-- 홈 화면 메인 소개 영역 -->
-  <main class="hero">
-    <h1>Q&A IBS 방식으로 말씀을 묵상하세요</h1>
-    <p>
-      귀납적 성경 공부(IBS) 방법을 따라, 소리내어 읽기부터 적용까지
-      여섯 단계로 본문을 깊이 있게 묵상할 수 있도록 돕는 서비스입니다.
-    </p>
+  <main class="overview-page">
+    <h1>성경책 개관</h1>
+    <p class="page-desc">책을 선택하면 AI가 BRI, key verse, 책의 구조를 정리해드립니다.</p>
 
-    <div class="hero-buttons">
-      <a href="overview.html" class="btn btn-primary">성경책 개관 보기</a>
-      <a href="meditation.html" class="btn btn-secondary">묵상 시작하기</a>
+    <div class="overview-form">
+      <select id="book-select">
+        <option value="">-- 성경책을 선택하세요 --</option>
+        <option value="창세기">창세기</option>
+        <option value="시편">시편</option>
+        <option value="이사야">이사야</option>
+        <option value="요한복음">요한복음</option>
+        <option value="골로새서">골로새서</option>
+      </select>
+      <button id="overview-btn">개관 생성하기</button>
+    </div>
+
+    <div id="overview-status"></div>
+
+    <div id="overview-result" class="overview-result" style="display:none;">
+      <section class="result-card">
+        <h2>BRI (핵심 정보)</h2>
+        <p id="result-bri"></p>
+      </section>
+
+      <section class="result-card">
+        <h2>Key Verse</h2>
+        <p id="result-key-verse"></p>
+      </section>
+
+      <section class="result-card">
+        <h2>책의 구조</h2>
+        <ul id="result-structure"></ul>
+      </section>
     </div>
   </main>
 
-  <!-- 서비스 특징 3가지를 간단히 소개하는 섹션 -->
-  <section class="features">
-    <div class="feature-card">
-      <h3>책 개관</h3>
-      <p>AI가 정리한 BRI, key verse, 책의 구조를 확인하세요.</p>
-    </div>
-    <div class="feature-card">
-      <h3>6단계 묵상</h3>
-      <p>읽기·관찰·배경·해석·진리찾기·적용 순서로 진행합니다.</p>
-    </div>
-    <div class="feature-card">
-      <h3>정확한 본문</h3>
-      <p>개역한글 성경 데이터를 그대로 불러와 보여줍니다.</p>
-    </div>
-  </section>
-
+  <script src="js/overview.js"></script>
 </body>
 </html>
