@@ -1,6 +1,7 @@
 from http.server import BaseHTTPRequestHandler
 import json
 import os
+import re
 from anthropic import Anthropic
 
 # 환경 변수에서 API 키를 읽어와 Claude 클라이언트 생성
@@ -38,7 +39,11 @@ class handler(BaseHTTPRequestHandler):
                 messages=[{"role": "user", "content": prompt}]
             )
 
-            response_text = message.content[0].text
+            response_text = next(
+                block.text for block in message.content if block.type == "text"
+            )
+            # Claude가 ```json ... ``` 코드펜스로 감싸서 응답하는 경우가 있어 제거한다
+            response_text = re.sub(r"^```(?:json)?\s*|\s*```$", "", response_text.strip())
 
             try:
                 result = json.loads(response_text)
