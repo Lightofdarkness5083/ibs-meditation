@@ -2,52 +2,82 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <!-- 반응형을 위한 필수 meta 태그: 화면 너비에 맞춰 표시 -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Q&A IBS 묵상</title>
+  <title>묵상하기 - Q&A IBS 묵상</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <!-- 모든 페이지에서 재사용할 상단 네비게이션 -->
   <nav class="nav">
     <a href="index.html" class="nav-logo">Q&A IBS</a>
     <div class="nav-links">
-      <a href="index.html" class="active">홈</a>
+      <a href="index.html">홈</a>
       <a href="overview.html">성경책 개관</a>
-      <a href="meditation.html">묵상 진행</a>
+      <a href="meditation.html" class="active">묵상하기</a>
     </div>
   </nav>
 
-  <!-- 홈 화면 메인 소개 영역 -->
-  <main class="hero">
-    <h1>Q&A IBS 방식으로 말씀을 묵상하세요</h1>
-    <p>
-      귀납적 성경 공부(IBS) 방법을 따라, 소리내어 읽기부터 적용까지
-      여섯 단계로 본문을 깊이 있게 묵상할 수 있도록 돕는 서비스입니다.
-    </p>
+  <main class="meditation-page">
 
-    <div class="hero-buttons">
-      <a href="overview.html" class="btn btn-primary">성경책 개관 보기</a>
-      <a href="meditation.html" class="btn btn-secondary">묵상 시작하기</a>
-    </div>
+    <!-- 시작 화면: 묵상할 본문 선택 -->
+    <section id="setup-section">
+      <h1>묵상할 본문을 선택하세요</h1>
+
+      <div id="setup-form">
+        <select id="book-select">
+          <option value="">-- 성경책을 선택하세요 --</option>
+          <option value="창세기">창세기</option>
+          <option value="시편">시편</option>
+          <option value="이사야">이사야</option>
+          <option value="요한복음">요한복음</option>
+          <option value="골로새서">골로새서</option>
+        </select>
+        <input type="text" id="chapter-verse-input" placeholder="예: 1:15-20">
+        <button id="start-btn">묵상 시작하기</button>
+      </div>
+
+      <p id="setup-status"></p>
+    </section>
+
+    <!-- 묵상 진행 화면: 7단계 -->
+    <section id="stage-section" style="display:none;">
+      <p id="stage-label"></p>
+      <h1 id="stage-title"></h1>
+
+      <!-- 본문 패널: 소리내어읽기~적용 단계까지 계속 표시 -->
+      <div id="verse-panel" style="display:none;">
+        <div id="verse-panel-header">
+          <span id="verse-panel-title"></span>
+          <button id="verse-toggle-btn" type="button">접기</button>
+        </div>
+        <div id="verse-panel-body"></div>
+      </div>
+
+      <div id="qa-box">
+        <p id="stage-loading" style="display:none;">준비하는 중입니다...</p>
+        <div id="stage-content" style="display:none;"></div>
+        <button id="retry-btn" style="display:none;">다시 시도</button>
+
+        <textarea id="stage-answer" rows="5"></textarea>
+      </div>
+
+      <div>
+        <button id="next-btn">다음</button>
+      </div>
+    </section>
+
+    <!-- 완료 화면 -->
+    <section id="done-section" style="display:none;">
+      <h1>묵상을 완료했습니다</h1>
+      <p>오늘도 말씀 앞에 서주셔서 감사합니다.</p>
+
+      <div id="summary-list"></div>
+
+      <button id="restart-btn">새로운 본문으로 다시 시작하기</button>
+    </section>
+
   </main>
 
-  <!-- 서비스 특징 3가지를 간단히 소개하는 섹션 -->
-  <section class="features">
-    <div class="feature-card">
-      <h3>책 개관</h3>
-      <p>AI가 정리한 BRI, key verse, 책의 구조를 확인하세요.</p>
-    </div>
-    <div class="feature-card">
-      <h3>6단계 묵상</h3>
-      <p>읽기·관찰·배경·해석·진리찾기·적용 순서로 진행합니다.</p>
-    </div>
-    <div class="feature-card">
-      <h3>정확한 본문</h3>
-      <p>개역한글 성경 데이터를 그대로 불러와 보여줍니다.</p>
-    </div>
-  </section>
-
+  <script src="js/meditation.js"></script>
 </body>
 </html>

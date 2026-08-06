@@ -109,6 +109,138 @@ body {
   color: #666;
 }
 
+.meditation-page {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 32px 20px;
+}
+
+#setup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+#setup-form select,
+#setup-form input,
+#setup-form button {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+#setup-form button,
+#start-btn {
+  background: #2f4b3f;
+  color: #fff;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#stage-content {
+  white-space: pre-line;
+}
+
+#stage-answer {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 15px;
+  font-family: inherit;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+  margin-top: 8px;
+}
+
+#verse-panel {
+  border: 1px solid #d8e4dd;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  background: #f4f6f1;
+}
+
+#verse-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+#verse-panel-title {
+  font-weight: bold;
+  color: #2f4b3f;
+}
+
+#verse-toggle-btn {
+  background: none;
+  border: 1px solid #2f4b3f;
+  border-radius: 6px;
+  color: #2f4b3f;
+  cursor: pointer;
+  font-size: 13px;
+  padding: 4px 10px;
+}
+
+#verse-panel-body {
+  white-space: pre-line;
+}
+
+#qa-box.qa-box--boxed {
+  border: 1px solid #d8e4dd;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 12px;
+  background: #fff;
+}
+
+#qa-box.qa-box--boxed #stage-content {
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+#summary-list {
+  margin: 24px 0;
+  text-align: left;
+}
+
+.summary-card {
+  border: 1px solid #d8e4dd;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 12px;
+  background: #fff;
+}
+
+.summary-card h3 {
+  color: #2f4b3f;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.summary-question {
+  white-space: pre-line;
+  color: #444;
+  margin-bottom: 10px;
+}
+
+.summary-answer {
+  white-space: pre-line;
+  font-weight: bold;
+  color: #222;
+}
+
+.summary-answer--empty {
+  font-weight: normal;
+  font-style: italic;
+  color: #999;
+}
+
 @media (max-width: 768px) {
   .nav {
     flex-direction: column;
