@@ -1,0 +1,11 @@
+{
+  "framework": null,
+  "cleanUrls": false,
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/api/book-overview", "destination": "/api/app" },
+    { "source": "/api/ibs-guide", "destination": "/api/main" },
+    { "source": "/api/verses", "destination": "/api/server" },
+    { "source": "/", "destination": "/index.html" }
+  ]
+}
