@@ -194,14 +194,16 @@ h1, h2, h3 {
 /* ---------- Shared page shell ---------- */
 
 .overview-page,
-.meditation-page {
+.meditation-page,
+.records-page {
   max-width: 680px;
   margin: 0 auto;
   padding: 32px 20px 56px;
 }
 
 .overview-page h1,
-.meditation-page h1 {
+.meditation-page h1,
+.records-page h1 {
   font-size: 26px;
   font-weight: 800;
   color: var(--forest);
@@ -534,6 +536,80 @@ h1, h2, h3 {
   margin: 0 auto;
 }
 
+#save-row {
+  margin-bottom: 16px;
+}
+
+#save-btn {
+  background: #fff;
+  color: var(--forest);
+  border: 1px solid var(--forest);
+}
+
+#save-btn:hover {
+  background: rgba(47, 75, 63, 0.08);
+}
+
+#save-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+#save-status {
+  margin-top: 8px;
+  font-size: 14px;
+  color: var(--text-muted);
+  min-height: 18px;
+}
+
+/* ---------- Records page ---------- */
+
+#records-status {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.record-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: #fff;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 14px;
+  overflow: hidden;
+}
+
+.record-card-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  font-weight: 700;
+  color: var(--forest);
+  cursor: pointer;
+  list-style: none;
+}
+
+.record-card-heading::-webkit-details-marker {
+  display: none;
+}
+
+.record-card-date {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.record-card-body {
+  padding: 0 20px 20px;
+}
+
+.record-card-body .summary-card {
+  box-shadow: none;
+}
+
 /* ---------- Responsive ---------- */
 
 @media (max-width: 768px) {
@@ -567,7 +643,8 @@ h1, h2, h3 {
   }
 
   .overview-page,
-  .meditation-page {
+  .meditation-page,
+  .records-page {
     padding: 40px 16px 72px;
   }
 

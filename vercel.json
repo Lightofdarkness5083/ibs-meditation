@@ -6,6 +6,7 @@
     { "source": "/api/book-overview", "destination": "/api/app" },
     { "source": "/api/ibs-guide", "destination": "/api/main" },
     { "source": "/api/verses", "destination": "/api/server" },
+    { "source": "/api/summaries", "destination": "/api/wsgi" },
     { "source": "/", "destination": "/index.html" }
   ]
 }

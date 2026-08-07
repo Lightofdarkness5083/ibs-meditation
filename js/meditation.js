@@ -82,6 +82,8 @@ const nextBtn = document.getElementById('next-btn');
 const doneSection = document.getElementById('done-section');
 const restartBtn = document.getElementById('restart-btn');
 const summaryList = document.getElementById('summary-list');
+const saveBtn = document.getElementById('save-btn');
+const saveStatus = document.getElementById('save-status');
 
 let book = '';
 let chapterVerse = '';
@@ -107,6 +109,8 @@ startBtn.addEventListener('click', async () => {
   stageRecords = [];
   currentIndex = 0;
   verseExpanded = true;
+  saveStatus.textContent = '';
+  saveBtn.disabled = false;
 
   setupSection.style.display = 'none';
   doneSection.style.display = 'none';
@@ -148,8 +152,38 @@ restartBtn.addEventListener('click', () => {
   verseLines = [];
   stageRecords = [];
   summaryList.innerHTML = '';
+  saveStatus.textContent = '';
+  saveBtn.disabled = false;
   doneSection.style.display = 'none';
   setupSection.style.display = 'block';
+});
+
+saveBtn.addEventListener('click', async () => {
+  saveBtn.disabled = true;
+  saveStatus.textContent = '저장하는 중입니다...';
+
+  try {
+    const response = await fetch('/api/summaries', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        visitor_id: getVisitorId(),
+        book: book,
+        chapter_verse: chapterVerse,
+        records: stageRecords
+      })
+    });
+
+    if (!response.ok) {
+      throw new Error();
+    }
+
+    saveStatus.textContent = '저장되었습니다. "묵상 기록"에서 확인할 수 있어요.';
+
+  } catch (error) {
+    saveStatus.textContent = '저장에 실패했습니다. 잠시 후 다시 시도해주세요.';
+    saveBtn.disabled = false;
+  }
 });
 
 verseToggleBtn.addEventListener('click', () => {
