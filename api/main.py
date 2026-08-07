@@ -1,10 +1,8 @@
 from http.server import BaseHTTPRequestHandler
 import json
 import os
+import traceback
 from anthropic import Anthropic
-
-# 환경 변수에서 API 키를 읽어와 Claude 클라이언트 생성
-client = Anthropic(api_key=os.environ.get("ANTHROPIC_API_KEY"))
 
 VALID_STAGES = {"observation", "background", "interpretation", "truth", "application"}
 
@@ -12,6 +10,9 @@ VALID_STAGES = {"observation", "background", "interpretation", "truth", "applica
 class handler(BaseHTTPRequestHandler):
     def do_POST(self):
         try:
+            # 환경 변수에서 API 키를 읽어와 Claude 클라이언트 생성
+            client = Anthropic(api_key=os.environ.get("ANTHROPIC_API_KEY"))
+
             content_length = int(self.headers.get('Content-Length', 0))
             raw_body = self.rfile.read(content_length)
             data = json.loads(raw_body)
@@ -47,6 +48,7 @@ class handler(BaseHTTPRequestHandler):
             self._send_json(200, {"content": response_text, "type": result_type})
 
         except Exception:
+            traceback.print_exc()
             self._send_json(500, {"error": "잠시 후 다시 시도해주세요."})
 
     def _build_prompt(self, stage, book, chapter_verse, answers):

@@ -2,15 +2,16 @@ from http.server import BaseHTTPRequestHandler
 import json
 import os
 import re
+import traceback
 from anthropic import Anthropic
-
-# 환경 변수에서 API 키를 읽어와 Claude 클라이언트 생성
-client = Anthropic(api_key=os.environ.get("ANTHROPIC_API_KEY"))
 
 
 class handler(BaseHTTPRequestHandler):
     def do_POST(self):
         try:
+            # 환경 변수에서 API 키를 읽어와 Claude 클라이언트 생성
+            client = Anthropic(api_key=os.environ.get("ANTHROPIC_API_KEY"))
+
             # 프론트에서 보낸 요청 본문(JSON)을 읽어온다
             content_length = int(self.headers.get('Content-Length', 0))
             raw_body = self.rfile.read(content_length)
@@ -54,6 +55,7 @@ class handler(BaseHTTPRequestHandler):
             self._send_json(200, result)
 
         except Exception:
+            traceback.print_exc()
             self._send_json(500, {"error": "잠시 후 다시 시도해주세요."})
 
     def _send_json(self, status_code, data):
